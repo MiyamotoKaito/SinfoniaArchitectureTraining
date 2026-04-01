@@ -1,5 +1,5 @@
 ﻿public enum SceneListEnum : int
 {
     None = 0,
-    SampleScene = 1,
+    MasterScene = 1,
 }
