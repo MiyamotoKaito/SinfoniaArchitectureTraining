@@ -17,7 +17,7 @@ namespace Domain
             //  存在してはいけないインスタンスはそもそも生成されないようにするため
             if (hp < 1)
             {
-                throw new ArgumentOutOfRangeException("初期体力は正の値で無ければならない" + (nameof(hp)));
+                throw new ArgumentOutOfRangeException("初期体力は1以上で無ければならない" + (nameof(hp)));
             }
             _hp = hp;
         }
