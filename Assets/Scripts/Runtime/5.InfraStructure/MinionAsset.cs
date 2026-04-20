@@ -7,7 +7,7 @@ namespace InfraStructure
     ///     ミニオンの初期設定を保存するSO
     /// </summary>
     [CreateAssetMenu(fileName = "MinionConfig", menuName = "Scriptable Objects/MinionConfig")]
-    public class MinionConfig : ScriptableObject
+    public class MinionAsset : ScriptableObject
     {
         #region プロパティ
         /// <summary> 体力 </summary>
@@ -25,7 +25,7 @@ namespace InfraStructure
         /// <summary> クリティカル率 </summary>
         public float CriticalChance => _CriticalChance;
         /// <summary> クリティカル倍率 </summary>
-        public float CriticalDamageMultiplier => _CriticalDamageMultiplier;
+        public float CriticalDamage => _CriticalDamage;
         #endregion
 
         #region Private変数
@@ -47,7 +47,7 @@ namespace InfraStructure
 
         [SerializeField,Tooltip("クリティカル率")] private float _CriticalChance;
 
-        [SerializeField, Tooltip("クリティカル倍率")] private float _CriticalDamageMultiplier;
+        [SerializeField, Tooltip("クリティカル倍率")] private float _CriticalDamage;
         #endregion
     }
 }
