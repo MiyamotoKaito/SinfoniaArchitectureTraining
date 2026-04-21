@@ -29,10 +29,11 @@ namespace Domain
         ///     ValueObjectは値の変更ができないため、減らす処理は新しいオブジェクトを返す形で実装する
         /// </summary>
         /// <param name="damage"></param>
-        public Health Damage(int damage)
+        public Health TakeDamage(int damage)
         {
             return new Health(Hp - damage);
         }
+        public bool IsDead() => Hp <= 0;
         /// <summary>
         ///     指定されたHealthオブジェクトと等しいかどうかを判断する(同値性)
         /// </summary>
