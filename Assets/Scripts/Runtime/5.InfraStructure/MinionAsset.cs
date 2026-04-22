@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace InfraStructure
@@ -6,7 +5,7 @@ namespace InfraStructure
     /// <summary>
     ///     ミニオンの初期設定を保存するSO
     /// </summary>
-    [CreateAssetMenu(fileName = "MinionConfig", menuName = "Scriptable Objects/MinionConfig")]
+    [CreateAssetMenu(fileName = "MinionAsset", menuName = "Scriptable Objects/Asset/MinionAsset")]
     public class MinionAsset : ScriptableObject
     {
         #region プロパティ
@@ -30,22 +29,22 @@ namespace InfraStructure
 
         #region Private変数
         [Header("体力")]
-        [SerializeField,Tooltip("体力")] private int _health;
+        [SerializeField, Tooltip("体力")] private int _health;
 
         [Header("防御力")]
         [SerializeField, Tooltip("防御力")] private int _defense;
 
         [Header("移動速度")]
-        [SerializeField,Tooltip("移動速度")] private float _moveSpeed;
+        [SerializeField, Tooltip("移動速度")] private float _moveSpeed;
 
         [Header("攻撃力")]
-        [SerializeField,Tooltip("攻撃力")] private int _attackPower;
+        [SerializeField, Tooltip("攻撃力")] private int _attackPower;
 
         [SerializeField, Tooltip("攻撃距離")] private float _attackRange;
 
         [SerializeField, Tooltip("攻撃速度")] private float _attackSpeed;
 
-        [SerializeField,Tooltip("クリティカル率")] private float _CriticalChance;
+        [SerializeField, Tooltip("クリティカル率")] private float _CriticalChance;
 
         [SerializeField, Tooltip("クリティカル倍率")] private float _CriticalDamage;
         #endregion
