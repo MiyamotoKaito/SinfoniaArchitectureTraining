@@ -4,16 +4,16 @@ namespace View
 {
     public class MinionView : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public void Initialize(MinionViewModel viewModel)
         {
-        
-        }
+            _viewModel = viewModel;
 
-        // Update is called once per frame
-        void Update()
+            _viewModel.OnMinionHealthChanged += MinionTakeDamageHandler;
+        }
+        private MinionViewModel _viewModel;
+        private void MinionTakeDamageHandler(float )
         {
-        
+
         }
     }
 }
