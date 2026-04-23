@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Domain;
 
 namespace Application
@@ -6,5 +5,8 @@ namespace Application
     interface IMinionRepository
     {
         void RegisterMinion();
+        bool TryGetMinion(int id, out MinionEntity minion);
+        bool ContainsMinion(int id);
+        void RemoveMinion(int id);
     }
 }
