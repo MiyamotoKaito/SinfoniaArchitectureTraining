@@ -1,3 +1,4 @@
+using Domain;
 using UnityEngine;
 
 namespace InfraStructure
@@ -9,6 +10,8 @@ namespace InfraStructure
     public class MinionAsset : ScriptableObject
     {
         #region プロパティ
+        /// <summary> ミニオンのタイプ </summary>
+        public MinionType MinionType => _minionType;
         /// <summary> 体力 </summary>
         public int Health => _health;
         /// <summary> 防御力 </summary>
@@ -28,6 +31,9 @@ namespace InfraStructure
         #endregion
 
         #region Private変数
+        [Header("ミニオンのタイプ")]
+        [SerializeField, Tooltip("ミニオンのタイプ")] private MinionType _minionType;
+
         [Header("体力")]
         [SerializeField, Tooltip("体力")] private int _health;
 

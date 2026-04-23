@@ -4,7 +4,7 @@ namespace Domain
 {
     public readonly struct AttackPower : IEquatable<AttackPower>
     {
-        public AttackPower(int value)
+        public AttackPower(float value)
         {
             if (value < 1)
             {
@@ -12,8 +12,8 @@ namespace Domain
             }
             _attackPowerValue = value;
         }
-        public int AttackPowerValue => _attackPowerValue;
+        public float AttackPowerValue => _attackPowerValue;
         public bool Equals(AttackPower other) => AttackPowerValue == other.AttackPowerValue;
-        private readonly int _attackPowerValue;
+        private readonly float _attackPowerValue;
     }
 }

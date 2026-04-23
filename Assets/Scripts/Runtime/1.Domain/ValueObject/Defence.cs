@@ -5,7 +5,7 @@ namespace Domain
 {
     public readonly struct Defence : IEquatable<Defence>
     {
-        public Defence(int value)
+        public Defence(float value)
         {
             if (value < 1)
             {
@@ -13,9 +13,9 @@ namespace Domain
             }
             _defeneceValue = value;
         }
-        public int DefenceValue => _defeneceValue;
+        public float DefenceValue => _defeneceValue;
         public bool Equals(Defence other) => DefenceValue == other.DefenceValue;
 
-        private readonly int _defeneceValue;
+        private readonly float _defeneceValue;
     }
 }

@@ -2,12 +2,12 @@ namespace Domain
 {
     public class MinionEntity
     {
-        public MinionEntity(int health, 
-                            int defence, 
+        public MinionEntity(float health,
+                            float defence,
                             float moveSpeed,
-                            int attackPower, 
+                            float attackPower,
                             float attackRange,
-                            float attackSpeed ,
+                            float attackSpeed,
                             float criticalChance,
                             float criticalDamage)
         {
