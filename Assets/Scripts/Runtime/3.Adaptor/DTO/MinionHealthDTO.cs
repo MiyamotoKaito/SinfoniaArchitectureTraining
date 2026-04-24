@@ -2,10 +2,10 @@ namespace Adaptor
 {
     public readonly ref struct MinionHealthDTO
     {
-        public MinionHealthDTO(int health)
+        public MinionHealthDTO(float health)
         {
             Health = health;
         }
-        public int Health { get; }
+        public float Health { get; }
     }
 }
