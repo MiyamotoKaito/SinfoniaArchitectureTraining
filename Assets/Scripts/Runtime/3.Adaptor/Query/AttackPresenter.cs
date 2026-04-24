@@ -1,18 +1,22 @@
-using Domain;
+using Application;
 
 namespace Adaptor
 {
     public class AttackPresenter
     {
-        public AttackPresenter(AttackController attackController)
+        public AttackPresenter(IMinionHealthViewModel viewModel, IMinionRepository repository)
         {
-            _attackController = attackController;
+            _viewModel = viewModel;
+            _repository = repository;
         }
 
-        public void Present(MinionEntity minion, MinionEntity other)
+        public float Present(int id)
         {
-            _attackController.Attack(minion, other);
+            _repository.TryGetMinion(id, out var target);
+            _viewModel.HealthChange(new MinionHealthDTO(target.Health.Hp), out var currentHealth);
+            return currentHealth;
         }
-        private readonly AttackController _attackController;
+        private readonly IMinionRepository _repository;
+        private readonly IMinionHealthViewModel _viewModel;
     }
 }

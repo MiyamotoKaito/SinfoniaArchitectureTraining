@@ -1,20 +1,22 @@
 using Application;
-using Domain;
 
 namespace Adaptor
 {
     public class AttackController
     {
-        public AttackController(IAttackUseCase attackUseCase)
+        public AttackController(IAttackUseCase attackUseCase, IMinionRepository minionRepository)
         {
             _attackUseCase = attackUseCase;
+            _repository = minionRepository;
         }
 
-        public void Attack(MinionEntity attacker, MinionEntity other)
+        public void Attack(int attackerId, int targetId)
         {
-            _attackUseCase.Execute(attacker, other);
+            _repository.TryGetMinion(attackerId, out var attacker);
+            _repository.TryGetMinion(targetId, out var target);
+            _attackUseCase.Execute(attacker, target);
         }
-
+        private readonly IMinionRepository _repository;
         private readonly IAttackUseCase _attackUseCase;
     }
 }
