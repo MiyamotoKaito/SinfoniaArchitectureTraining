@@ -4,6 +4,6 @@ namespace Application
 {
     public interface ISpawnUseCase
     {
-        void SpawnMinion(IMinionRepository repository);
+        void SpawnMinion(int id);
     }
 }

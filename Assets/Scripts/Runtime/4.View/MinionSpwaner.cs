@@ -1,21 +1,34 @@
-using Application;
+using Adaptor;
 using UnityEngine;
 
 namespace View
 {
     public class MinionSpawner : MonoBehaviour
     {
-        public void Initialize(IMinionRepository repository)
+        public void Init(AttackController attackController, AttackPresenter attackPresenter, KillController killController, KillPresenter killPresenter, MoveSpeedPresenter moveSpeedPresenter,RegisterController registerController)
         {
-            _repository = repository;
-        }
-        public void SpawnMinion(IMinionRepository repository)
-        {
-            var minion = Instantiate(_minionView, _spawnPoint.position, Quaternion.identity);
-            repository.RegisterMinion(minion.ID, minion.MinionType);
+            Debug.Log("うへへへ");
+            _attackController = attackController;
+            _attackPresenter = attackPresenter;
+            _killController = killController;
+            _killPresenter = killPresenter;
+            _moveSpeedPresenter = moveSpeedPresenter;
+            _registerController = registerController;
+            SpawnMinion();
         }
         [SerializeField] private MinionView _minionView;
-        [SerializeField] private Transform _spawnPoint;
-        private IMinionRepository _repository;
+        private AttackController _attackController;
+        private AttackPresenter _attackPresenter;
+        private KillController _killController;
+        private KillPresenter _killPresenter;
+        private MoveSpeedPresenter _moveSpeedPresenter;
+        private RegisterController _registerController;
+        private void SpawnMinion()
+        {
+            var minion = _minionView;
+            _registerController.Register(minion.ID);
+            Instantiate(minion, transform.position, Quaternion.identity);
+            minion.Initialize(_attackController, _attackPresenter, _killController, _killPresenter, _moveSpeedPresenter);
+        }
     }
 }

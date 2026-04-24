@@ -12,11 +12,11 @@ namespace InfraStructure
             return _minions.ContainsKey(id);
         }
 
-        public void RegisterMinion(int id, MinionType minionType)
+        public void RegisterMinion(int id)
         {
             if (!_minions.ContainsKey(id))
             {
-                _minions.Add(id, ConvertEntity(minionType));
+                _minions.Add(id, ConvertEntity());
             }
         }
 
@@ -33,17 +33,12 @@ namespace InfraStructure
             return _minions.TryGetValue(id, out minion);
         }
 
-        [SerializeField] private List<MinionAsset> _assets;
+        [SerializeField] private MinionAsset _assets;
         private Dictionary<int, MinionEntity> _minions = new Dictionary<int, MinionEntity>();
 
-        private MinionEntity ConvertEntity(MinionType minionType)
+        private MinionEntity ConvertEntity()
         {
-            var asset = _assets.Find(a => a.MinionType == minionType);
-            if (asset == null)
-            {
-                Debug.LogError($"MinionAsset not found for MinionType: {minionType}");
-                return null;
-            }
+            var asset = _assets;
 
             return new MinionEntity(asset.Health,
                 asset.Defense,

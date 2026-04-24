@@ -1,25 +1,30 @@
+using System;
 using Adaptor;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace View
 {
     public class MinionView : MonoBehaviour
     {
+        public event Action MinionDead;
         public int ID => _id;
         public void Initialize(AttackController attackController,
                                AttackPresenter attackPresenter,
                                KillController killController,
-                               KillPresenter killPresenter)
+                               KillPresenter killPresenter,
+                               MoveSpeedPresenter moveSpeedPresenter)
         {
             _attackController = attackController;
             _attackPresenter = attackPresenter;
 
-
             _killController = killController;
             _killPresenter = killPresenter;
 
-            _id = GetID();
+            _moveSpeedPresenter = moveSpeedPresenter;
 
+            _id = GetID();
+            NavMeshAgentSetUp();
         }
         public void TakeDamage(int attackerId)
         {
@@ -32,6 +37,10 @@ namespace View
         private KillController _killController;
         private KillPresenter _killPresenter;
 
+        private MoveSpeedPresenter _moveSpeedPresenter;
+
+        [SerializeField]
+        private NavMeshAgent _navMeshAgent;
         private int _id;
         private float _currentHealth;
         private int GetID() => gameObject.GetInstanceID();
@@ -41,18 +50,17 @@ namespace View
             if (_killPresenter.Present(_id) && _currentHealth <= 0)
             {
                 _killController.Kill(_id);
+                MinionDead?.Invoke();
                 Destroy(gameObject);
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void NavMeshAgentSetUp()
         {
-            if (_attackPresenter != null) return;
-
-            if (other.TryGetComponent<MinionView>(out var minionView))
-            {
-                minionView.TakeDamage(_id);
-            }
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            Debug.Log(_moveSpeedPresenter == null);
+            _navMeshAgent.speed = _moveSpeedPresenter.GetMoveSpeed(_id);
+            _navMeshAgent.SetDestination(FindAnyObjectByType<MinionView>().transform.position);
         }
     }
 }
