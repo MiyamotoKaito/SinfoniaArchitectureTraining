@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae363176f5232d45b750c51052b1e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: InfraStructure::InfraStructure.MinionRepository
-  _assets: {fileID: 11400000, guid: ffeb24af0b26e294696dfc8067be0680, type: 2}
+  _assets: {fileID: 11400000, guid: cbb54fab129dc38489ecbd5520aad7be, type: 2}
 --- !u!4 &1827937762
 Transform:
   m_ObjectHideFlags: 0
