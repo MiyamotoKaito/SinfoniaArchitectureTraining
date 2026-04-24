@@ -9,7 +9,7 @@ namespace Application
         {
             _attackSteps = attackSteps;
         }
-        public void CalculateDamage(MinionEntity attacker, MinionEntity other)
+        public void CalculateDamage(MinionEntity attacker, MinionEntity target)
         {
             float totalDamage = attacker.AttackPower.AttackPowerValue;
             foreach (var attackStep in _attackSteps)
@@ -18,7 +18,7 @@ namespace Application
             }
             if (totalDamage > 0)
             {
-                other.TakeDamage(totalDamage);
+                target.TakeDamage(totalDamage);
             }
         }
         private readonly List<IAttackStep> _attackSteps;
