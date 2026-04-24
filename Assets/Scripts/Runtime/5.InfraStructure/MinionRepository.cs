@@ -40,6 +40,15 @@ namespace InfraStructure
         {
             var asset = _assets;
 
+            Debug.Log("MinionEntity created with Health: " + asset.Health +
+          ", Defense: " + asset.Defense +
+          ", MoveSpeed: " + asset.MoveSpeed +
+          ", AttackPower: " + asset.AttackPower +
+          ", AttackRange: " + asset.AttackRange +
+          ", AttackSpeed: " + asset.AttackSpeed +
+          ", CriticalChance: " + asset.CriticalChance +
+          ", CriticalDamage: " + asset.CriticalDamage);
+
             return new MinionEntity(asset.Health,
                 asset.Defense,
                 asset.MoveSpeed,
@@ -48,6 +57,8 @@ namespace InfraStructure
                 asset.AttackSpeed,
                 asset.CriticalChance,
                 asset.CriticalDamage);
+
+
         }
     }
 }

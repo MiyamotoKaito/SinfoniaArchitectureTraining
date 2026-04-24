@@ -13,11 +13,11 @@ namespace Domain
         /// <param name="hp">初期体力</param>
         public Health(float hp)
         {
-            //　コンストラクタの引数が1未満の場合は例外を投げる
+            //　コンストラクタの引数が0未満の場合は例外を投げる
             //  存在してはいけないインスタンスはそもそも生成されないようにするため
-            if (hp < 1)
+            if (hp < 0)
             {
-                throw new ArgumentOutOfRangeException("初期体力は1以上で無ければならない" + (nameof(hp)));
+                throw new ArgumentOutOfRangeException("初期体力は0以上で無ければならない" + (nameof(hp)));
             }
             _hp = hp;
         }
@@ -31,9 +31,10 @@ namespace Domain
         /// <param name="damage"></param>
         public Health TakeDamage(float damage)
         {
-            return new Health(Hp - damage);
+            var newHp = MathF.Max(0, Hp - damage);
+            return new Health(newHp);
         }
-        public bool IsDead() => Hp <= 0;
+        public bool IsDead() => (int)Hp <= 0;
         /// <summary>
         ///     指定されたHealthオブジェクトと等しいかどうかを判断する(同値性)
         /// </summary>

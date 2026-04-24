@@ -36,6 +36,7 @@ namespace Composition
 
         private MinionSpawnUseCase _minionSpawnUseCase;
         private RegisterController _registerController;
+        private MinionRegistry _minionRegistry;
         private void Initialize()
         {
             #region ViewModel
@@ -45,6 +46,7 @@ namespace Composition
             #endregion
 
             _minionRepository = FindAnyObjectByType<MinionRepository>();
+            _minionRegistry = new MinionRegistry();
 
             _attackPipeline = new AttackPipeline(_attackSteps);
             _attackUseCase = new AttackUseCase(AttackPipeline);
@@ -59,11 +61,20 @@ namespace Composition
             _minionSpawnUseCase = new(_minionRepository);
             _registerController = new(_minionSpawnUseCase);
 
+
             var Spawns = FindObjectsByType<MinionSpawner>(FindObjectsSortMode.None);
-            foreach (var spawn in Spawns)
+            for (int i = 0; i < Spawns.Length; i++)
             {
+                var spawn = Spawns[i];
                 Debug.Assert(spawn != null);
-                spawn.Init(_attackController, _attackPresenter, _killController, _killPresenter, _moveSpeedPresenter, _registerController);
+                spawn.Init(_attackController,
+                           _attackPresenter,
+                           _killController,
+                           _killPresenter,
+                           _moveSpeedPresenter,
+                           _registerController,
+                           _minionRegistry,
+                            (Team)i);
             }
 
         }

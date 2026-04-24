@@ -11,6 +11,9 @@ namespace Application
         }
         public void CalculateDamage(MinionEntity attacker, MinionEntity target)
         {
+            // 攻撃者か対象が既に死亡していたら処理しない
+            if (attacker == null || target == null) return;
+
             float totalDamage = attacker.AttackPower.AttackPowerValue;
             foreach (var attackStep in _attackSteps)
             {
