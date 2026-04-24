@@ -1,0 +1,10 @@
+﻿<Solution>
+  <Project Path="Domain.csproj" />
+  <Project Path="Adaptor.csproj" />
+  <Project Path="Application.csproj" />
+  <Project Path="View.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="SymphonyFrameWork.Enum.csproj" />
+  <Project Path="InfraStructure.csproj" />
+  <Project Path="Composition.csproj" />
+</Solution>
