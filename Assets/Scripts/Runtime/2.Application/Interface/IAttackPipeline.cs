@@ -4,6 +4,6 @@ namespace Application
 {
     public interface IAttackPipeline
     {
-        void CalculateDamage(MinionEntity attacker, MinionEntity other);
+        void CalculateDamage(MinionEntity attacker, MinionEntity target);
     }
 }
